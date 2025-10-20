@@ -20,7 +20,7 @@ Returns the integer day difference from YYYY-MM-DD to today (negative for future
 	•	Unit tests for core logic and CSV processor.
 
 ## Repository Structure
-
+```
 DAT5501_lab/
 └─ DAT5501_lab/
    └─ DurationCalculator/
@@ -31,7 +31,7 @@ DAT5501_lab/
       ├─ test_duration_from_csv.py     # Unit tests for CSV processor (optional)
       ├─ random_dates_fixed.csv        # Sample cleaned CSV (header: date)
       └─ README.md                     # This file
-
+```
 
 ## Python packages
 
