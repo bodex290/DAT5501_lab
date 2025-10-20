@@ -19,7 +19,7 @@ Each sub-folder documents an individual activity, including well-commented sourc
 ---
 
 ## 🧩 Repository Structure
-
+```
 DAT5501_lab/
 ├── README.md                        ← (this file) overall portfolio overview
 ├── DAT5501_lab/
@@ -40,7 +40,7 @@ DAT5501_lab/
 │   └── other_projects/…            ← Additional practicals or experiments
 │
 └── requirements.txt                  ← shared dependencies
-
+```
 ---
 
 ## 🧠 Learning Focus
