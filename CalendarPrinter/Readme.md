@@ -49,8 +49,9 @@ To run all tests, use:
 
 ```bash
 python -m unittest test_print_calendar_unittest.py
+```
 
-🧩 Learning Outcomes
+## 🧩 Learning Outcomes
 
 This activity builds on the following Knowledge, Skills, and Behaviours (KSBs) from the apprenticeship standard.
 
@@ -59,17 +60,17 @@ This activity builds on the following Knowledge, Skills, and Behaviours (KSBs) f
 	•	K54 – Interpreting structured textual data and verifying alignment logic through systematic testing.
 	•	K57 – Applying good data handling and structured output formatting practices, foundational to later analytical workflows.
 
-🧰 Skills
+## 🧰 Skills
 	•	S49 – Applying analytical and logical reasoning to generate structured program outputs.
 	•	S50 – Communicating information clearly through formatted console output and documented test cases.
 	•	S53 – Using confirmatory testing (unit tests) to validate output accuracy and program stability.
 	•	S55 – Employing Python as an industry-standard tool for structured problem solving and testing automation.
 
-💼 Behaviours
+## 💼 Behaviours
 	•	B3 (Professionalism & Quality) – Maintaining high code quality through consistent formatting, documentation, and version control.
 	•	B6 (Continuous Learning) – Using testing and refactoring to iteratively improve the reliability of the solution.
 
-💡 Reflection on Learning
+## 💡 Reflection on Learning
 
 Through this activity, I improved my ability to:
 	•	Write modular and testable Python code that adheres to professional standards.
