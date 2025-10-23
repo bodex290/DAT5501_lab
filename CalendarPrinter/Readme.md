@@ -68,3 +68,13 @@ This activity builds on the following Knowledge, Skills, and Behaviours (KSBs) f
 💼 Behaviours
 	•	B3 (Professionalism & Quality) – Maintaining high code quality through consistent formatting, documentation, and version control.
 	•	B6 (Continuous Learning) – Using testing and refactoring to iteratively improve the reliability of the solution.
+
+💡 Reflection on Learning
+
+Through this activity, I improved my ability to:
+	•	Write modular and testable Python code that adheres to professional standards.
+	•	Develop automated test cases that confirm output accuracy and formatting.
+	•	Apply structured problem-solving by combining logic, formatting, and validation.
+	•	Use GitHub version control to commit and track incremental improvements.
+
+This reinforced the importance of clarity, testing, and documentation — all essential components of professional software development within data analysis projects.
