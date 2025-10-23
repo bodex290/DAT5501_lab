@@ -1,41 +1,51 @@
+# asset_prices.py
 import pandas as pd
-import matplotlib.pyplot as plt
 import yfinance as yf
+import matplotlib.pyplot as plt
 
-# 1. Choose a company — e.g., Nvidia (NVDA)
-ticker = "NVDA"
+def fetch_data(ticker: str, period: str = "1y") -> pd.DataFrame:
+    """Download and clean historical price data for a NASDAQ-listed company."""
+    data = yf.download(ticker, period=period)
+    return data.dropna()
 
-# 2. Download 1 year of daily historical prices
-data = yf.download(ticker, period="1y")
+def calculate_daily_percent_change(data: pd.DataFrame) -> pd.DataFrame:
+    """Calculate daily percentage change."""
+    data['Daily % Change'] = data['Close'].pct_change() * 100
+    return data
 
-# 3. Clean dataset (drop missing values)
-data = data.dropna()
+def calculate_std_dev(data: pd.DataFrame) -> float:
+    """Return standard deviation of daily percentage changes."""
+    return round(data['Daily % Change'].std(), 2)
 
-# 4. Plot closing price vs. date
-plt.figure(figsize=(10,5))
-plt.plot(data.index, data['Close'], label="Closing Price")
-plt.title(f"{ticker} Closing Price (1 Year)")
-plt.xlabel("Date")
-plt.ylabel("Price (USD)")
-plt.legend()
-plt.grid(True)
-plt.tight_layout()
-plt.show()
+def plot_prices(data: pd.DataFrame, ticker: str):
+    """Plot closing price vs date."""
+    plt.figure(figsize=(10,5))
+    plt.plot(data.index, data['Close'], label='Closing Price')
+    plt.title(f"{ticker} Closing Price (1 Year)")
+    plt.xlabel("Date")
+    plt.ylabel("Price (USD)")
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
 
-# 5. Extra: Calculate daily percentage change
-data['Daily % Change'] = data['Close'].pct_change() * 100
+def plot_percent_change(data: pd.DataFrame, ticker: str):
+    """Plot daily percentage change vs date."""
+    plt.figure(figsize=(10,5))
+    plt.plot(data.index, data['Daily % Change'], label='Daily % Change')
+    plt.title(f"{ticker} Daily Percentage Change (1 Year)")
+    plt.xlabel("Date")
+    plt.ylabel("Percentage Change (%)")
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
 
-# 6. Plot daily percentage change vs. date
-plt.figure(figsize=(10,5))
-plt.plot(data.index, data['Daily % Change'], label="Daily % Change")
-plt.title(f"{ticker} Daily Percentage Change (1 Year)")
-plt.xlabel("Date")
-plt.ylabel("Percentage Change (%)")
-plt.legend()
-plt.grid(True)
-plt.tight_layout()
-plt.show()
-
-# 7. Extra extra: Calculate standard deviation
-std_dev = data['Daily % Change'].std()
-print(f"Standard deviation of daily % changes for {ticker}: {std_dev:.2f}%")
+if __name__ == "__main__":
+    ticker = "NVDA"
+    df = fetch_data(ticker)
+    df = calculate_daily_percent_change(df)
+    std_dev = calculate_std_dev(df)
+    print(f"Standard deviation of daily % changes for {ticker}: {std_dev}%")
+    plot_prices(df, ticker)
+    plot_percent_change(df, ticker)
