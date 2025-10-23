@@ -1,38 +1,43 @@
-# test_asset_prices.py
-import pytest
+# AssetPrices/test_asset_prices.py
 import pandas as pd
+import pytest
 from asset_prices import (
     fetch_data,
     calculate_daily_percent_change,
-    calculate_std_dev
+    calculate_std_dev,
 )
 
 @pytest.fixture
-def mock_data():
-    """Mock dataset for testing percentage change and std deviation."""
-    return pd.DataFrame({
-        "Close": [100, 105, 102, 108, 110]
-    })
+def fake_hist_df():
+    return pd.DataFrame(
+        {
+            "Open":[1,2,3],
+            "High":[2,3,4],
+            "Low":[0,1,2],
+            "Close":[100.0, 105.0, 102.0, 108.0, 110.0],
+            "Adj Close":[99.0, 104.0, 101.0, 107.0, 109.0],
+            "Volume":[100,200,150,180,220],
+        },
+        index=pd.date_range("2024-01-01", periods=5, freq="D")
+    )
 
-def test_fetch_data_returns_dataframe():
-    """Check that fetch_data returns a pandas DataFrame."""
-    df = fetch_data("AAPL", period="1mo")
+def test_fetch_data_returns_dataframe(fake_hist_df):
+    def fake_downloader(ticker, period="1y"):
+        return fake_hist_df.copy()
+
+    df = fetch_data("AAPL", period="1mo", downloader=fake_downloader)
     assert isinstance(df, pd.DataFrame)
-    assert "Close" in df.columns
     assert not df.empty
+    assert "Close" in df.columns
 
-def test_calculate_daily_percent_change(mock_data):
-    """Ensure percent change column is correctly calculated."""
-    df = calculate_daily_percent_change(mock_data.copy())
+def test_calculate_daily_percent_change(fake_hist_df):
+    df = calculate_daily_percent_change(fake_hist_df.copy())
     assert "Daily % Change" in df.columns
-    # First value should be NaN since there's no previous day
     assert pd.isna(df['Daily % Change'].iloc[0])
-    # Remaining values should be numeric
     assert df['Daily % Change'].iloc[1:].apply(lambda x: isinstance(x, float)).all()
 
-def test_calculate_std_dev(mock_data):
-    """Check that standard deviation returns a float value."""
-    df = calculate_daily_percent_change(mock_data.copy())
+def test_calculate_std_dev(fake_hist_df):
+    df = calculate_daily_percent_change(fake_hist_df.copy())
     std_dev = calculate_std_dev(df)
     assert isinstance(std_dev, float)
     assert std_dev > 0
