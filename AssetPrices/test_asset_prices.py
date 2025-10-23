@@ -11,14 +11,14 @@ from asset_prices import (
 def fake_hist_df():
     return pd.DataFrame(
         {
-            "Open":[1,2,3],
-            "High":[2,3,4],
-            "Low":[0,1,2],
-            "Close":[100.0, 105.0, 102.0, 108.0, 110.0],
-            "Adj Close":[99.0, 104.0, 101.0, 107.0, 109.0],
-            "Volume":[100,200,150,180,220],
+            "Open":      [100.0, 102.0, 101.0, 107.0, 109.0],
+            "High":      [103.0, 106.0, 104.0, 109.0, 112.0],
+            "Low":       [ 99.0, 101.0, 100.0, 105.0, 108.0],
+            "Close":     [100.0, 105.0, 102.0, 108.0, 110.0],
+            "Adj Close": [ 99.0, 104.0, 101.0, 107.0, 109.0],
+            "Volume":    [ 100,   200,   150,   180,   220],
         },
-        index=pd.date_range("2024-01-01", periods=5, freq="D")
+        index=pd.date_range("2024-01-01", periods=5, freq="D"),
     )
 
 def test_fetch_data_returns_dataframe(fake_hist_df):
