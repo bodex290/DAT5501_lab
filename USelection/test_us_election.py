@@ -105,3 +105,4 @@ def test_compare_two_candidates_alignment(sample_df: pd.DataFrame):
     assert ((comp >= 0) & (comp <= 1)).to_numpy().all()
 
 #empyty line
+# (No top-level script code to test in us_election.py)
