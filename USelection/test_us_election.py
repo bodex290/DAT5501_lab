@@ -103,3 +103,5 @@ def test_compare_two_candidates_alignment(sample_df: pd.DataFrame):
     assert set(comp.index.tolist()) == {"StateA", "StateB"}
     # Values are within [0,1]
     assert ((comp >= 0) & (comp <= 1)).to_numpy().all()
+
+#empyty line
