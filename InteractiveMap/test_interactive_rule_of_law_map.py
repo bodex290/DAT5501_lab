@@ -9,7 +9,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-SCRIPT_FILENAME = "interactive_rule_of_law_map.py"
+SCRIPT_FILENAME = "interactive_map_of_rule_of_law_index.py"
 
 
 def _load_module_from_path(module_name: str, file_path: Path):
