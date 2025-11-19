@@ -25,3 +25,8 @@ def test_returns_with_single_row():
     df = pd.DataFrame({"Close": [100.0]})
     result = asset_prices.returns(df)
     assert "Returns" in result.columns
+
+def test_returns_raises_keyerror_if_close_missing():
+    df = pd.DataFrame({"Open": [100.0, 102.0]})
+    with pytest.raises(KeyError):
+        asset_prices.returns(df)
