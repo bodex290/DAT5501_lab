@@ -2,6 +2,20 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import yfinance as yf
 
+def returns(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Add a 'Returns' column with simple daily percentage returns
+    based on the 'Close' price.
+
+    The first row will be NaN because there is no previous day to compare to.
+    """
+    if "Close" not in df.columns:
+        raise KeyError("DataFrame must contain a 'Close' column")
+
+    result = df.copy()
+    result["Returns"] = result["Close"].pct_change()
+    return result
+
 # 1. Choose a company — e.g., Nvidia (NVDA)
 ticker = "NVDA"
 
