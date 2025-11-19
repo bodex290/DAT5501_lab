@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import yfinance as yf
 
+TICKER = "NVDA"  # Nvidia Corporation
+
 def returns(df: pd.DataFrame) -> pd.DataFrame:
     """
     Add a 'Returns' column with simple daily percentage returns
@@ -18,7 +20,7 @@ def returns(df: pd.DataFrame) -> pd.DataFrame:
 
 # 1. Choose a company — e.g., Nvidia (NVDA)
 def main ():
-    ticker = "NVDA"
+    ticker = TICKER
 
     # 2. Download 1 year of daily historical prices
     data = yf.download(ticker, period="1y")
