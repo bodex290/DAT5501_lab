@@ -91,3 +91,73 @@ plt.xlabel("Polynomial order")
 plt.ylabel("RMSE")
 plt.tight_layout()
 plt.show()
+
+
+
+
+# ==========================================================
+# NEW: Polynomial fits comparison plot (like the example)
+# ==========================================================
+
+# We already have:
+#   years  -> all years in the last ~100 years
+#   vals   -> CO2 per capita values
+#   max_year -> latest year in the dataset
+
+# 1. Define fit limit and training subset (same as before)
+fit_limit_year = max_year - 10
+train_mask = years <= fit_limit_year
+
+x_train = years[train_mask]
+y_train = vals[train_mask]
+
+# 2. Centre years for numerical stability
+t0 = x_train.mean()
+t_train = x_train - t0
+
+# 3. Define a smooth year grid for plotting curves
+years_plot = np.linspace(years.min(), years.max(), 500)
+t_plot = years_plot - t0
+
+# 4. Choose which polynomial orders to show
+orders_to_plot = [2, 3, 9]   # change to [6, 11, 20] etc if you want
+
+styles = {
+    2: ("Polynomial order 2", "tab:green", "dashed"),
+    3: ("Polynomial order 3", "tab:orange", "solid"),
+    9: ("Polynomial order 9", "tab:red", "dotted"),
+}
+
+# 5. Fit each polynomial and evaluate over full range
+fits = {}
+for m in orders_to_plot:
+    coeffs = np.polyfit(t_train, y_train, deg=m)
+    y_plot = np.polyval(coeffs, t_plot)
+    fits[m] = y_plot
+
+# 6. Make the figure
+plt.figure(figsize=(10, 6))
+
+# Observed data (points)
+plt.scatter(years, vals, s=15, color="tab:blue",
+            label="Observed data")
+
+# Polynomial curves
+for m in orders_to_plot:
+    label, color, ls = styles[m]
+    y_plot = fits[m]
+    plt.plot(years_plot, y_plot, linestyle=ls, color=color, linewidth=2,
+             label=label)
+
+# Vertical dashed line at fit limit
+plt.axvline(fit_limit_year, color="k", linestyle="--", linewidth=1.5,
+            label=f"Fit limit ({fit_limit_year})")
+
+# Labels, title, legend
+plt.xlabel("Year")
+plt.ylabel("CO₂ emissions per capita (tonnes/person)")
+plt.title("UK CO₂ Emissions per Capita\nPolynomial Fit Comparison")
+plt.legend()
+plt.grid(alpha=0.3)
+plt.tight_layout()
+plt.show()
