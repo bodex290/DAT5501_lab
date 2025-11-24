@@ -21,4 +21,11 @@ def days_until_today(date_str: str) -> int:
     target = _parse_date(date_str)
     today = dt.date.today()
     return (today - target).days
-#
+
+if __name__ == "__main__":
+    input_date = input("Enter a date (YYYY-MM-DD): ")
+    try:
+        days_diff = days_until_today(input_date)
+        print(f"Days until today: {days_diff}")
+    except ValueError as e:
+        print(f"Error: {e}")
