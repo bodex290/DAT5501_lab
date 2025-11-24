@@ -21,3 +21,4 @@ def days_until_today(date_str: str) -> int:
     target = _parse_date(date_str)
     today = dt.date.today()
     return (today - target).days
+#
