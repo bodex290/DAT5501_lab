@@ -5,6 +5,10 @@ import numpy as np
 import pandas as pd
 
 def days_from_csv(csv_path: str | Path) -> pd.DataFrame:
+    """
+    Calculate the number of days between two YYYY-MM-DD strings.
+    Returns an integer day count.
+    """
     p = Path(csv_path)
     if not p.exists():
         raise FileNotFoundError(f"CSV not found: {p}")
