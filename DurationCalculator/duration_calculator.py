@@ -1,20 +1,23 @@
 # duration_calculator.py
 import datetime as dt
 
-def days_until_today(user_date: str) -> int:
+DATE_FMT = "%Y-%m-%d"
+
+def _parse_date(date_str: str) -> dt.date:
     """
-    Calculate how many days ago the given date was from today.
-    Input format: YYYY-MM-DD
+    Parse a YYYY-MM-DD string to a date.
+    Raises ValueError if the format/content is invalid.
     """
     try:
-        input_date = dt.datetime.strptime(user_date, "%Y-%m-%d").date()
-        today = dt.date.today()
-        delta = today - input_date
-        return delta.days
-    except ValueError:
-        raise ValueError("Invalid date format. Use YYYY-MM-DD.")
+        return dt.datetime.strptime(date_str, DATE_FMT).date()
+    except ValueError as e:
+        raise ValueError("Date must be in YYYY-MM-DD format") from e
 
-if __name__ == "__main__":
-    date_input = input("Enter a date (YYYY-MM-DD): ")
-    days = days_until_today(date_input)
-    print(f"{date_input} was {days} days ago.")
+def days_until_today(date_str: str) -> int:
+    """
+    Return the number of days from `date_str` to today.
+    Positive for past dates, 0 for today, negative for future dates.
+    """
+    target = _parse_date(date_str)
+    today = dt.date.today()
+    return (today - target).days
