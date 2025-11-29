@@ -3,7 +3,7 @@
 ### **Student:** Samuel Ojeiwa  
 ### **Module Code:** DAT5501  
 ### **Assessment:** 001 – Portfolio (50%)  
-### **Deadline:** 20 November 2025, 23:59  
+### **Deadline:** 29 November 2025, 23:59  
 
 ---
 
@@ -21,25 +21,42 @@ Each sub-folder documents an individual activity, including well-commented sourc
 ## 🧩 Repository Structure
 ```
 DAT5501_lab/
-├── README.md                        ← (this file) overall portfolio overview
-├── DAT5501_lab/
-│   ├── DurationCalculator/           ← Activity 1: Date difference calculator
-│   │   ├── README.md                 ← Detailed documentation for this activity
-│   │   ├── duration_calculator.py
-│   │   ├── duration_from_csv.py
-│   │   ├── test_duration_calculator.py
-│   │   ├── random_dates_fixed.csv
-│   │   └── fix_csv.py
-│   │
-│   ├── RuleOfLawMap/                 ← Activity 2: Interactive world rule-of-law map (OWID)
-│   │   └── README.md                 ← to be completed
-│   │
-│   ├── DataPipelineCI/               ← Activity 3: Continuous Integration pipeline
-│   │   └── README.md
-│   │
-│   └── other_projects/…            ← Additional practicals or experiments
+├── README.md                         ← (this file)
+├── requirements.txt
+└── DAT5501_lab/
+├── AssetPrices/
+│   ├── README.md
+│   ├── asset_prices.py
+│   └── test_asset_prices.py
 │
-└── requirements.txt                  ← shared dependencies
+├── CalendarPrinter/
+│   ├── README.md
+│   ├── calendar_printer.py
+│   └── test_calendar_printer_unittest.py
+│
+├── DurationCalculator/
+│   ├── README.md
+│   ├── duration_calculator.py
+│   ├── duration_from_csv.py
+│   ├── test_duration_calculator.py
+│   ├── random_dates_fixed.csv
+│   └── fix_csv.py
+│
+├── PolynomialModelComparison/
+│   ├── README.md
+│   ├── polynomial_models.py
+│   └── test_polynomial_models.py
+│
+├── USelection/
+│   ├── README.md
+│   ├── us_election.py
+│   └── test_us_election.py
+│
+├── RuleOfLawMap/
+│   └── README.md
+│
+└── DataPipelineCI/
+└── README.md
 ```
 ---
 
@@ -64,35 +81,68 @@ Each activity contributes to the development of professional KSBs defined in the
 
 ## 🧮 Key Activities
 
-### 1. [Duration Calculator](./DAT5501_lab/DurationCalculator/README.md)
-A Python utility that:
-- Calculates how many days a given date is from today.  
-- Extends to multiple dates loaded from a CSV.  
-- Includes unit tests, data cleaning, and NumPy-based day precision.  
 
-> Demonstrates **S49**, **S50**, and **S53** through applied analysis and testing.
+## 1) **Duration Calculator**  
+📁 `DAT5501_lab/DurationCalculator`  
+Calculates the number of days between a given date and today, with strict input validation and unit testing.  
+Also includes a CSV-processing tool using NumPy day precision.
 
----
-
-### 2. [World Rule of Law Map](./DAT5501_lab/RuleOfLawMap/README.md)
-An interactive choropleth map visualising the **World Justice Project’s Rule of Law Index**, using data from *Our World in Data (OWID)*.  
-Includes:
-- Data preprocessing and cleaning with pandas.  
-- GeoPandas / Plotly visualisation.  
-- Year selector interactivity (slider).
-
-> Demonstrates **K54**, **S50**, and **S55** through visual storytelling and data exploration.
+✔ Demonstrates **S49**, **S53**, **S50**
 
 ---
 
-### 3. [Data Pipeline CI](./DAT5501_lab/DataPipelineCI/README.md)
-A demonstration of a **Continuous Integration (CI)** setup for a data-analysis workflow.  
-Includes:
-- Unit testing a line-fitting model.  
-- Integration with CircleCI or GitHub Actions.  
-- Synthetic data generation and validation.
+## 2) **Asset Prices Analysis (yfinance + pandas)**  
+📁 `DAT5501_lab/AssetPrices`  
+Downloads 1 year of historical data for a selected ticker, computes returns, plots price trends, and includes a fully tested `returns()` helper function.
 
-> Demonstrates **S53** and **K57** through automated testing and reproducible pipelines.
+✔ Demonstrates **K57**, **S49**, **S53**
+
+---
+
+## 3) **Calendar Printer (CLI Tool)**  
+📁 `DAT5501_lab/CalendarPrinter`  
+Prints a month layout given `days` (28–31) and `start` (Sun=0…Sat=6).  
+Formatting matches unit tests exactly, including spacing, header, and trailing newline.
+
+✔ Demonstrates **S53**, **S50** (format-sensitive testing)
+
+---
+
+## 4) **Polynomial Model Comparison**  
+📁 `DAT5501_lab/PolynomialModelComparison`  
+Fits polynomial models of varying orders and compares them using metrics such as SSE, RMSE, and BIC.  
+Includes visualisation and interpretation of underfitting vs overfitting.
+
+✔ Demonstrates **K54**, **S49**, **S53**
+
+---
+
+## 5) **US Election Voting Data Analysis**  
+📁 `DAT5501_lab/USelection`  
+Loads and analyses US election primary data.  
+Includes:  
+- Data cleaning  
+- Histogram and bar-chart visualisation  
+- Unit tests for loading, filtering, and validation
+
+✔ Demonstrates **K54**, **S50**, **S55**
+
+---
+
+## 6) **World Rule of Law Map (Interactive Visualisation)**  
+📁 `DAT5501_lab/RuleOfLawMap`  
+Interactive choropleth visualising the Rule of Law Index based on OWID/WJP datasets.  
+Includes year slider, preprocessing, and clear data-source documentation.
+
+✔ Demonstrates **K54**, **S50**, **S55**
+
+---
+
+## 7) **Data Pipeline CI**  
+📁 `DAT5501_lab/DataPipelineCI`  
+A demonstration of a simple CI workflow for analytics code using unittest and automation principles.
+
+✔ Demonstrates **S53**, **K57**
 
 ---
 
@@ -100,7 +150,7 @@ Includes:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/<your-username>/DAT5501_lab.git
+   git clone https://github.com/bodex290/DAT5501_lab.git
    cd DAT5501_lab
 
 2.	Create a virtual environment and install dependencies:
@@ -149,3 +199,14 @@ Each project emphasises:
 	•	Professional documentation and reproducibility.
 	•	Real-world data handling using Python, pandas, and NumPy.
 	•	Ethical and legal awareness in data processing.
+ 
+# 🧭 Brief Reflection
+
+Working through these activities in small, focused iterations strengthened my ability to refactor code, test effectively, and communicate results clearly. Breaking tasks into steps made the code easier to maintain and gave me more confidence working with data, validation, and visualisation.
+
+# ⚠️ Note on Branch Merging & CI
+
+Some feature branches were not fully merged because CircleCI tests failed due to missing dependencies/configuration issues.
+Although I attempted to resolve these, I was not able to stabilise the CI environment before submission.
+
+Despite this, the repository still demonstrates a clear iterative workflow, structured commits, and consistent improvements in testing and code quality.
